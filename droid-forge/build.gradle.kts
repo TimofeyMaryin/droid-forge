@@ -44,16 +44,28 @@ android {
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            afterEvaluate {
-                from(components["release"])
+//publishing {
+//    publications {
+//        register<MavenPublication>("release") {
+//            afterEvaluate {
+//                from(components["release"])
+//            }
+//        }
+//    }
+//}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from (components["release"])
+                groupId = "com.github.mint"
+                artifactId = "mint-android-app"
+                version = "0.0.4"
             }
         }
     }
 }
-
 
 dependencies {
 
